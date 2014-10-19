@@ -1,0 +1,18 @@
+<h1>Add a new player</h1>
+<%= form_for(@player) do |f| %>
+
+	<%= render 'shared/error_messages', :object => f.object %>
+
+	<%= f.label :name, "Player name" %>
+	<%= f.text_field :name %>
+
+	<%= f.label :value, "Player value" %>
+	<%= f.text_field :value %>
+
+	<%= f.label :price, "Player price" %>
+	<%= f.text_field :price %>
+
+	<%= f.submit "Submit Player" %>
+
+<% end %>
+
