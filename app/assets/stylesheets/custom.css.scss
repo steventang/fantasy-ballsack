@@ -1,2 +1,55 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+td {
+	padding: .5em;
+}
+
+.knapsack-inputs {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+.parameters {
+	font-size: 16px;
+	margin-bottom: .25em;
+}
+
+.parameter-submit {
+	margin-top: 1.8em;
+}
+
+.import-submit {
+
+}
+
+.file-field {
+	margin-bottom: .2em;
+}
+
+.manual-player {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+.calculate-button {
+	padding-left: 3em;
+	padding-right: 3em;
+	margin: 1em;
+	margin-left: 0;
+}
+
+.reset-button {
+	margin: 1em;
+	margin-left: 0;
+}
+
+.btn-default {
+	background-color: #d7d7d7;
+	font-color: darkgrey;
+	border: none;
+}
+
+.optimal-set h4 {
+	color: #6da557;
+}

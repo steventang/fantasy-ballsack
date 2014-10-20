@@ -5,10 +5,6 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
-  get 'static_pages/home'
-
-  get 'static_pages/about'
-
   get 'calculate' => 'knapsack#calculate'
 
   get 'reset' => 'sessions#destroy'

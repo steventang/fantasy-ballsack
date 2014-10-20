@@ -1,6 +1,6 @@
-<li>
-	<span><%= player.name %></span>
-	<span><%= player.price %></span>
-	<span><%= player.value %></span>
-	
-</li>
+<tr>
+	<td><%= player.name %></td>
+	<td><%= number_with_precision(player.price, :precision => 2) %></td>
+	<td><%= number_with_precision(player.value, :precision => 2) %></td>
+	<td><%= link_to "delete", player, method: :delete, :data => { :confirm => "Delete player?" }, :title => player.name %></td>
+</tr>
