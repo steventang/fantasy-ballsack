@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
 
 	has_many :players, :dependent => :destroy
 
-	validates :budget, :numericality => { :greater_than => 0 }
-	validates :team_size, :numericality => { :only_integer => true, :greater_than => 0 }
+	validates :budget, :numericality => { :greater_than => 0 }, :allow_blank => true
+	validates :team_size, :numericality => { :only_integer => true, :greater_than => 0 }, :allow_blank => true
+
 
 	def self.new_token # the self. makes this a class method
 		SecureRandom.urlsafe_base64
