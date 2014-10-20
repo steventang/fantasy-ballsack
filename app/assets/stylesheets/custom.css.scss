@@ -4,6 +4,9 @@
 td {
 	padding: .5em;
 }
+.intro {
+	margin-top: 1.75em;
+}
 
 .knapsack-inputs {
 	margin-top: 2em;
@@ -28,8 +31,8 @@ td {
 }
 
 .manual-player {
-	margin-top: 2em;
-	margin-bottom: 2em;
+	margin-top: 3em;
+	margin-bottom: 5em;
 }
 
 .calculate-button {
@@ -37,11 +40,14 @@ td {
 	padding-right: 3em;
 	margin: 1em;
 	margin-left: 0;
+	background-color: #286A99;
+	border: none;
 }
 
 .reset-button {
 	margin: 1em;
 	margin-left: 0;
+	border: none;
 }
 
 .btn-default {
@@ -50,6 +56,6 @@ td {
 	border: none;
 }
 
-.optimal-set h4 {
+.optimal-set h3 {
 	color: #6da557;
 }

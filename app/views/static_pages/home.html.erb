@@ -1,76 +1,72 @@
-<h2>Optimize your fantasy basketball draft with the Knapsack Problem</h2>
-<p>Read about the inspiration behind this methodology <a href="http://medium.com/@steventang">here</a>
-<p>Upload a CSV, .xls, or .xlsx with these 3 columns, <strong>including these exact headers</strong>, from left to right: name, price, value</p>
-<p>
-You can also manually enter in a player.
-Your player uploads will be remembered. Hitting "Reset" will permanently erase your stored players.
-</p>
+<div class="row">
+	<div class="intro col-md-6">
+		<h2>Optimize your fantasy basketball draft with the Knapsack Problem</h2>
+		<p>
+			Read about the inspiration behind this draft methodology <a href="http://medium.com/@steventang">here</a>.
+			The <a href="http://en.wikipedia.org/wiki/Knapsack_problem">knapsack problem</a> is a classic algorithmic optimization problem.
+			Given a set of items, each having a value and weight, pick items to put in a knapsack that maximize value given a weight constraint.
+			The 0-1 knapsack problem restricts the copies of each item to either 0 or 1.
+		</p>
+		<p>
+			In auction-style fantasy sports drafts, we want to optimize for total team value, given players with a known value and price (huge assumptions of course). Fantasy drafting can be modeled as a 0-1 knapsack problem with one additional constraint: the total of items (players) cannot exceed the max team size. Note that the optimal picks for a team size of at most N is the same as the optimal picks for a team size of exactly N, since the remainder of the team can be filled with 0 bid players.
+		</p>
 
-<div class="row knapsack-inputs">
-	<div class="parameter-form col-md-6">
-		<h3>Draft Parameters</h3>
-
-		<div class="parameters">
-			<span>Budget: <%= @user.budget %></span> |
-			<span>Team Size: <%= @user.team_size %><span>
-		</div>
-		<div class="row">
-		
-			<%= form_for(@user) do |f| %>
-
-				<!--<%= render 'shared/error_messages', :object => f.object %>-->
-				<div class="col-md-4">
-					<%= f.label :budget, "Budget" %>
-					<%= f.number_field :budget, :step => 'any', :class => "form-control" %>
-
-					<%= hidden_field_tag :draft_parameter, "Budget" %> <!-- I'm passing in this string so we can update the flash message with the right paramter -->
-				</div>
-				<!--<%= f.submit "Save Budget" %>-->
-
-			<!--<% end %>-->
-
-			<!--<%= form_for(@user) do |f| %>-->	
-
-				<!--<%= render 'shared/error_messages', :object => f.object %>-->
-				<div class="col-md-4">
-					<%= f.label :team_size, "Max Team Size" %>
-					<%= f.number_field :team_size, :class => "form-control" %>
-
-					<%= hidden_field_tag :draft_parameter, "Team Size" %>
-		
-				</div>
-
-				<div class="parameter-submit col-md-4">
-					<%= f.submit "Save Parameters", :class => "form-control btn-default" %>
-				</div>
-
-			<% end %>
-		</div>
-
+		<p><strong>INSTRUCTIONS: </strong>Save your draft parameters, import or manually add players, then calculate. Your player list will be saved even on browser close.</p>
 	</div>
 
-	<div class="import-players-form col-md-6">
-		<h3>Import Players</h3>
+	<div class="knapsack-inputs col-md-4">
+		<div class="parameter-form">
+			<h3>Draft Parameters</h3>
 
-		<p>Imported file MUST have the following exact headers, in order: name, price, value. Filetype can be .csv, .xlsx, or .xls</p>
+			<div class="parameters">
+				<span>Budget: <%= @user.budget %></span> |
+				<span>Team Size: <%= @user.team_size %><span>
+			</div>
+	
+				<%= form_for(@user) do |f| %>
+					<div class="row">
+						<div class="col-md-6">
+							<%= f.label :budget, "Budget" %>
+							<%= f.number_field :budget, :step => 'any', :class => "form-control" %>
+						</div>
 
-		<div class="import-form">
-			<div class="row">
-				<%= form_tag import_players_path, :multipart => true do %>
-					<div class="file-field col-md-4">
-						<%= file_field_tag :file %>
+						<div class="col-md-6">
+							<%= f.label :team_size, "Max Team Size" %>
+							<%= f.number_field :team_size, :class => "form-control" %>
+						</div>
 					</div>
-					<div class="import-submit col-md-4">
-						<%= submit_tag "Import", :class => "form-control btn btn-default"%>
+
+					<div class="parameter-submit">
+						<%= f.submit "Save Parameters", :class => "form-control btn-default parameters-button" %>
 					</div>
+
 				<% end %>
 			</div>
 		</div>
+
+		<div class="import-players col-md-4">
+			<h3>Import Players</h3>
+
+			<p>Imported file MUST have the following exact headers, in order: name, price, value. Filetype can be .csv, .xlsx, or .xls</p>
+
+			<div class="import-form">
+				<div class="row">
+					<%= form_tag import_players_path, :multipart => true do %>
+
+						<div class="file-field col-md-6">
+							<%= file_field_tag :file %>
+						</div>
+						<div class="import-submit col-md-6">
+							<%= submit_tag "Import", :class => "form-control btn btn-default"%>
+						</div>
+
+					<% end %>
+				</div>
+			</div>
 	</div>
 </div>
-
 <div class="manual-player">
-	<h4>Manually add a player</h4>
+	<h3>Manually add a player</h3>
 	<%= form_for(@player, :class => "form-inline", :role => "form") do |f| %>
 
 		<!--<%= render 'shared/error_messages', :object => f.object %>-->
@@ -119,7 +115,7 @@ Your player uploads will be remembered. Hitting "Reset" will permanently erase y
 <div class="row">
 	<% if @optimal_player_set %>
 		<div class = "col-md-4 optimal-set">	
-			<h4>Found optimal lineup:</h4>
+			<h3>Found optimal lineup:</h3>
 			<table>
 				<tr>
 					<td><strong>Name</strong></td>
