@@ -1,19 +1,30 @@
 class PlayersController < ApplicationController
   def new
-  	@player = Player.new
+  	@user = current_user
+  	@player = @user.player.new
   end
 
   def create
-  	@player = Player.new(player_params)
+  	@user = current_user
+  	@player = @user.players.build(player_params)
   	if @player.save
-  		redirect_to @player
+  		flash[:success] = "#{@player.name} has been added"
+  		redirect_to root_url
   	else
-  		render 'new'
+  		flash[:warning] = "Fill in every field for your player. Value must be a number. Price must be a positive number."
+  		redirect_to root_url
   	end
   end
 
   def show
   	@player = Player.find(params[:id])
+  end
+
+  def import
+  	puts "we reach import action"
+  	Player.import(params[:file], current_user)
+  	flash[:success] = "Players uploaded"
+  	redirect_to root_url
   end
 
   private

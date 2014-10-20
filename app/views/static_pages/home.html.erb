@@ -1,2 +1,90 @@
-<h2>Optimize your fantasy basketball draft with help from the kanpsack problem</h2>
-<p>Upload a CSV with heaers and these 3 columns from left to right: player name, player value, player price</p>
+<div class=".col-md-6">
+	<h2>Optimize your fantasy basketball draft with the Knapsack Problem</h2>
+	<p>Read about the inspiration behind this methodology <a href="http://medium.com/@steventang">here</a>
+	<p>Upload a CSV with these 3 columns, including headers, from left to right: player name, player value, player price
+	You can also manually enter in a player.
+	Your player uploads will be remembered. Hitting "Reset" will permanently erase your stored players.
+	</p>
+
+	<h3>Draft Parameters</h3>
+
+	<div>Budget: <%= @user.budget %></div>
+	<div>Team Size: <%= @user.team_size %></div>
+
+	<%= form_for(@user) do |f| %>
+
+		<!--<%= render 'shared/error_messages', :object => f.object %>-->
+
+		<%= f.label :budget, "Budget" %>
+		<%= f.text_field :budget %>
+
+		<%= hidden_field_tag :draft_parameter, "Budget" %> <!-- I'm passing in this string so we can update the flash message with the right paramter -->
+
+		<%= f.submit "Save Budget" %>
+
+	<% end %>
+
+	<%= form_for(@user) do |f| %>
+
+		<!--<%= render 'shared/error_messages', :object => f.object %>-->
+
+		<%= f.label :team_size, "Max Team Size" %>
+		<%= f.text_field :team_size %>
+
+		<%= hidden_field_tag :draft_parameter, "Team Size" %>
+
+		<%= f.submit "Save Team Size" %>
+
+	<% end %>
+
+	<h3>Add Players</h3>
+
+	<h4>Import CSV of players</h4>
+
+		<%= form_tag import_players_path, :multipart => true do %>
+			<%= file_field_tag :file %>
+			<%= submit_tag "Import" %>
+		<% end %>
+
+	<h4>Manually add a player</h4>
+	<%= form_for(@player) do |f| %>
+
+		<!--<%= render 'shared/error_messages', :object => f.object %>-->
+
+		<%= f.label :name, "Player name" %>
+		<%= f.text_field :name %>
+
+		<%= f.label :value, "Player value" %>
+		<%= f.text_field :value %>
+
+		<%= f.label :price, "Player price" %>
+		<%= f.text_field :price %>
+
+		<%= f.submit "Submit Player" %>
+
+	<% end %>
+
+	<%= link_to 'Calculate Optimal Linup', calculate_path %>
+
+	<div>
+		<%= @message %>
+	</div>
+		
+	<div>
+		<%= "read about the blog that inspired this tool" %>
+	</div>
+
+	<div>
+		<%= link_to 'Reset', reset_path %>
+	</div>
+
+	<h3>List of players</h3>
+	<div class="playerslist">
+		<% if @user.players.any? %>
+			Rank Player Value Price
+			<ol class="players">
+				<%= render @user.players %>
+			</ol>
+		<% end %>
+	</div>
+</div>

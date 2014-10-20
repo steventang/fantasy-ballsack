@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019001741) do
+ActiveRecord::Schema.define(version: 20141020000759) do
+
+  create_table "knapsack_problems", force: true do |t|
+    t.text     "items"
+    t.integer  "max_cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "max_count"
+  end
 
   create_table "players", force: true do |t|
     t.string   "name"
@@ -19,6 +27,17 @@ ActiveRecord::Schema.define(version: 20141019001741) do
     t.decimal  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "players", ["user_id"], name: "index_players_on_user_id"
+
+  create_table "users", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_digest"
+    t.integer  "team_size"
+    t.decimal  "budget"
   end
 
 end

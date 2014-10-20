@@ -1,15 +1,26 @@
 Rails.application.routes.draw do
-  get 'players/new'
+  get 'user/edit'
 
-  get 'players/create'
+  get 'knapsack/calculate'
+
+  get 'sessions/new'
 
   get 'static_pages/home'
 
   get 'static_pages/about'
 
+  get 'calculate' => 'knapsack#calculate'
+
+  get 'reset' => 'sessions#destroy'
+
   root :to => "static_pages#home"
 
-  resources :players
+  resources :players do 
+    collection { post :import }
+  end
+
+  resources :user
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
