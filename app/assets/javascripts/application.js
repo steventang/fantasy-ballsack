@@ -1,3 +1,5 @@
+
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -14,3 +16,18 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+// Make alerts fade out
+window.setTimeout(function() {
+  $(".alert").fadeTo(500, 0).slideUp(500, function(){
+    $(this).remove(); 
+  });
+}, 2500);
+
+$(document).ready(function(){
+	$("#calculate-button").click(function() {
+		$(this).hide();
+		$(".calculate-loading").css("margin-top", "1em")
+		$(".calculate-loading").text("Calculating... May take some time");
+	});
+});

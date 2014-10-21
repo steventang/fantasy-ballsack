@@ -8,8 +8,7 @@
 </head>
 <body>
   <div class="container">
-  	<% flash.each do |msg_type, msg| %><!--flash is a hash assigned if there is a flash to display-->
-  		<!-- <%= content_for(:div, msg, class: "alert alert-#{msg_type}") %>-->
+  	<% flash.each do |msg_type, msg| %>
       <div class="alert alert-<%= msg_type %>"><%= msg %></div>
   	<% end %>
     <%= yield %>
