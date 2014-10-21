@@ -9,11 +9,20 @@ class PlayersController < ApplicationController
   	@player = @user.players.build(player_params)
   	if @player.save
   		flash[:success] = "#{@player.name} has been added"
-  		redirect_to root_url
   	else
-  		flash[:warning] = "Fill in every field for your player. Value must be a number. Price must be a positive number."
-  		redirect_to root_url
+  		flash[:warning] = "Fill in every field for your player. Value must be a number. Price must be a positive number."	
   	end
+    redirect_to root_url
+  end
+
+  def update
+  	@player = Player.find(params[:id])
+  	if @player.update_attributes(player_params)
+  		flash[:success] = "#{@player.name} has been updated"
+  	else
+  		flash[:warning] = "Invalid input for player"	
+  	end
+  	redirect_to root_url
   end
 
   def destroy

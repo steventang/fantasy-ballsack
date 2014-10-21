@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'knapsack/calculate'
 
+  post 'knapsack/calculate' # do this so we can update players
+
   get 'sessions/new'
 
   get 'calculate' => 'knapsack#calculate'

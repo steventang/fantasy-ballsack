@@ -7,14 +7,15 @@ class KnapsackController < ApplicationController
   	if @user.players.any?		
   		if !@user.budget.nil? && !@user.team_size.nil?
   			solve_knapsack
+  			flash.now[:success] = "Calculation successful"
   		else
   			flash.now[:warning] = "You must first specify a budget and team size"
   		end
   	else
   		flash.now[:warning] = "No players added!"	
   	end
-  	
-  	render 'static_pages/home'
+
+ 	render 'static_pages/home'
   end
 
 end

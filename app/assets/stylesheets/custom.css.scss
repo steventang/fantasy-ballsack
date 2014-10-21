@@ -18,10 +18,16 @@ td {
 	margin-bottom: .25em;
 }
 
+.parameter-form {
+	border: 1px black;
+}
 .parameter-submit {
 	margin-top: 1.8em;
 }
 
+.import-form {
+	border: 1px black;
+}
 .import-submit {
 
 }
@@ -58,4 +64,8 @@ td {
 
 .optimal-set h3 {
 	color: #6da557;
+}
+
+.player-edit {
+	width: 4em;
 }
