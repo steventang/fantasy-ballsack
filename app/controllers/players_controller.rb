@@ -35,7 +35,6 @@ class PlayersController < ApplicationController
   end
 
   def import
-  	puts "we reach import action"
   	Player.import(params[:file], current_user)
   	flash[:success] = "Players uploaded"
   	redirect_to root_url

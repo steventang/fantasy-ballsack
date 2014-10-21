@@ -2,13 +2,13 @@
 	<div class="intro col-md-6">
 		<h2>Optimize your fantasy basketball draft with the Knapsack Problem</h2>
 		<p>
-			Read about the inspiration behind this draft methodology <a href="http://medium.com/@steventang">here</a>.
-			The <a href="http://en.wikipedia.org/wiki/Knapsack_problem">knapsack problem</a> is a classic algorithmic optimization problem.
-			Given a set of items, each having a value and weight, pick items to put in a knapsack that maximize value given a weight constraint.
+			Read about the inspiration behind this draft methodology <a href="https://medium.com/@steventang/drafting-a-fantasy-basketball-team-c94967464908">here</a>.
+			The <a href="http://en.wikipedia.org/wiki/Knapsack_problem">knapsack problem</a> asks:
+			given a set of items, each having a value and weight, pick items to put in a knapsack that maximize value given a weight constraint.
 			The 0-1 knapsack problem restricts the copies of each item to either 0 or 1.
 		</p>
 		<p>
-			In auction-style fantasy sports drafts, we want to optimize for total team value, given players with a known value and price (huge assumptions of course). Fantasy drafting can be modeled as a 0-1 knapsack problem with one additional constraint: the total of items (players) cannot exceed the max team size. Note that the optimal picks for a team size of at most N is the same as the optimal picks for a team size of exactly N, since the remainder of the team can be filled with 0 bid players.
+			In auction-style fantasy sports drafts, we want to optimize for total team value, given players with a known value and price. Fantasy drafting can be modeled as a 0-1 knapsack problem with one additional constraint: the total of items (players) cannot exceed the max team size. The optimal picks for a team size of at most N is the same as the optimal picks for a team size of exactly N, since the remainder of the team can be filled with 0 bid players.
 		</p>
 
 		<p><strong>INSTRUCTIONS: </strong>Save your draft parameters, import or manually add players, then calculate. Your player list will be saved even on browser close.</p>
@@ -103,7 +103,7 @@
 
 <div class="row">
 	<div class="col-md-4 calculate-loading">
-		<%= link_to 'Calculate Optimal Lineup', calculate_path, :class => "btn btn-lg btn-primary", :id => "calculate-button" %>
+		<%= link_to 'Calculate Optimal Draft Picks', calculate_path, :class => "btn btn-lg btn-primary", :id => "calculate-button" %>
 	</div>
 
 	<div class="col-md-4">
@@ -115,7 +115,7 @@
 <div class="row">
 	<% if @optimal_player_set %>
 		<div class = "col-md-4 optimal-set">	
-			<h3>Found optimal lineup:</h3>
+			<h3>Found optimal picks:</h3>
 			<table>
 				<tr>
 					<td><strong>Name</strong></td>
@@ -153,4 +153,8 @@
 			</table>
 		<% end %>
 	</div>
+</div>
+
+<div class="footer">
+	Made by <a href="http://steventang.me">Steven Tang</a>. View it on <a href="https://github.com/steventang/fantasy-ballsack">Github</a>.
 </div>

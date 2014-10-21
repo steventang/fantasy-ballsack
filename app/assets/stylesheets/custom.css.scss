@@ -2,7 +2,7 @@
 @import "bootstrap";
 
 td {
-	padding: .5em;
+	padding: .25em;
 }
 .intro {
 	margin-top: 1.75em;
@@ -18,18 +18,8 @@ td {
 	margin-bottom: .25em;
 }
 
-.parameter-form {
-	border: 1px black;
-}
 .parameter-submit {
 	margin-top: 1.8em;
-}
-
-.import-form {
-	border: 1px black;
-}
-.import-submit {
-
 }
 
 .file-field {
@@ -70,6 +60,17 @@ td {
 	color: #6da557;
 }
 
+.player-name-edit {
+	width: 12em;
+}
+
 .player-edit {
-	width: 4em;
+	width: 6em;
+}
+
+.footer {
+	margin-top: 5em;
+	font-color: grey;
+	font-size: 12px;
+	text-align: left;
 }

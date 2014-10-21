@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-  get 'user/edit'
 
   get 'knapsack/calculate'
 
   post 'knapsack/calculate' # do this so we can update players
-
-  get 'sessions/new'
 
   get 'calculate' => 'knapsack#calculate'
 
@@ -17,7 +14,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
-  resources :user
+  resources :user, :only => :update
 
 
   # The priority is based upon order of creation: first created -> highest priority.

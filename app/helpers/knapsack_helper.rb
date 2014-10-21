@@ -18,10 +18,6 @@ module KnapsackHelper
 			@optimal_player_set_price += player.price
 			@optimal_player_set_value += player.value
 		end
-
-
-#	  @message = 'Found solution: ' + get_list_of_used_items_names(problem, cost_matrix) +
-#   ' with total value: ' + cost_matrix.last.last.last.to_s
 	end
 
 	def dynamic_programming_knapsack(problem)
@@ -83,7 +79,6 @@ module KnapsackHelper
 	def get_list_of_used_items_names(problem, cost_matrix)
 	  items = problem.items
 	  used_items = get_used_items(problem, cost_matrix)
-	  puts "got used Items"
 	  result = []
 	 
 	  used_items.each_with_index do |item,i|
@@ -91,8 +86,7 @@ module KnapsackHelper
 	      result << items[i].name
 	    end
 	  end
-	 
-	  # result.sort.join(', ')
+
 	  result
 	end
 	 
